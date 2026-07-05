@@ -1,12 +1,12 @@
 /* ============================================================
-   WeSplit – Global Configuration & Constants
+   GoPlaces – Global Configuration & Constants
    ============================================================ */
 'use strict';
 
 const APP = {
-  name:    'WeSplit',
+  name:    'GoPlaces',
   version: '1.0.0',
-  tagline: 'Smart Group Travel Companion',
+  tagline: 'Your Journey, Simplified',
 
   /* --------------- Expense Categories --------------- */
   defaultCategories: [

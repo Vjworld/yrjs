@@ -1,11 +1,11 @@
-# WeSplit 🗺️
+# GoPlaces 🗺️
 
-**Smart Group Travel Expense Manager** — Track, split, and settle group travel expenses with ease. Works offline, syncs to Google Sheets.
+**Your Journey, Simplified** — Track, split, and settle group travel expenses with ease. Works offline, syncs to Google Sheets.
 
 [![Deploy to GitHub Pages](https://github.com/badges/shields/raw/master/badges/github_pages.svg)](https://pages.github.com/)
 
 ## 🌐 Live Demo
-> `https://<your-username>.github.io/<repo-name>/wesplit/`
+> `https://<your-username>.github.io/<repo-name>/goplaces/`
 
 ---
 
@@ -45,31 +45,31 @@
 
 ### 1. Fork / Push to GitHub
 ```bash
-git clone https://github.com/your-username/wesplit.git
-cd wesplit
-# Open wesplit/ folder
+git clone https://github.com/your-username/goplaces.git
+cd goplaces
+# Open goplaces/ folder
 ```
 
 ### 2. Enable GitHub Pages
 - Go to your repo → **Settings → Pages**
 - Source: **Deploy from a branch**
-- Branch: `main` / `master`, folder: `/ (root)` or `/wesplit`
-- Save → your site is live at `https://<username>.github.io/<repo>/wesplit/`
+- Branch: `main` / `master`, folder: `/ (root)` or `/goplaces`
+- Save → your site is live at `https://<username>.github.io/<repo>/goplaces/`
 
 ### 3. Set Up Google Sheets Sync (Optional)
 1. Open [script.google.com](https://script.google.com) → New Project
-2. Paste the Apps Script code (from WeSplit → Settings → Google Sheets → Configure)
+2. Paste the Apps Script code (from GoPlaces → Settings → Google Sheets → Configure)
 3. Deploy → Web App (Execute as: Me, Who can access: Anyone)
-4. Copy the URL → paste in WeSplit settings
+4. Copy the URL → paste in GoPlaces settings
 
 ### 4. Custom Domain (Namecheap + Cloudflare)
 Add a `CNAME` file in the repo root:
 ```
-wesplit.yourdomain.com
+goplaces.yourdomain.com
 ```
 Then in Cloudflare DNS, add:
 ```
-CNAME  wesplit  <username>.github.io
+CNAME  goplaces  <username>.github.io
 ```
 
 ---
@@ -92,7 +92,7 @@ CNAME  wesplit  <username>.github.io
 ## 📁 Project Structure
 
 ```
-wesplit/
+goplaces/
 ├── index.html              # Main SPA entry point
 ├── sw.js                   # Service Worker (offline cache)
 ├── .nojekyll               # GitHub Pages: don't process with Jekyll
@@ -125,7 +125,7 @@ wesplit/
 ## 💰 Monetization Strategy
 
 1. **Sponsored Listings** – Hotels, cafes, activity providers pay to appear in the Sponsors section
-2. **Coins → Discount Redemptions** – Partners pay WeSplit when coins are redeemed
+2. **Coins → Discount Redemptions** – Partners pay GoPlaces when coins are redeemed
 3. **Premium Tier** – Future: unlimited trips, advanced analytics, priority support
 4. **API Access** – Sell access to anonymized travel spending trends
 
@@ -144,7 +144,7 @@ Edit `js/config.js` to customize:
 
 ## 📱 PWA Installation
 
-WeSplit is a Progressive Web App. Users can install it on:
+GoPlaces is a Progressive Web App. Users can install it on:
 - **Android**: Chrome → Add to Home Screen
 - **iOS**: Safari → Share → Add to Home Screen
 - **Desktop**: Chrome/Edge → Install button in address bar

@@ -1,5 +1,5 @@
 /* ============================================================
-   WeSplit – Page Renderers
+   GoPlaces – Page Renderers
    ============================================================ */
 'use strict';
 
@@ -1039,7 +1039,7 @@ const Pages = (() => {
 
       <div class="settings-group">
         <div class="settings-group-title">About</div>
-        <div class="settings-item"><div class="settings-item-info"><span>Version</span></div><span class="text-muted text-sm">WeSplit v${APP.version}</span></div>
+        <div class="settings-item"><div class="settings-item-info"><span>Version</span></div><span class="text-muted text-sm">GoPlaces v${APP.version}</span></div>
         <div class="settings-item"><div class="settings-item-info"><span>GitHub</span></div><a href="https://github.com" target="_blank" class="text-sm" style="color:var(--clr-primary)">View Source</a></div>
       </div>
     </div>`;
@@ -1056,7 +1056,7 @@ const Pages = (() => {
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'wesplit_backup.json';
+    a.download = 'goplaces_backup.json';
     a.click();
     Toast.show('Data exported!', 'success');
   }
@@ -1070,13 +1070,13 @@ const Pages = (() => {
   }
 
   /* ======================================================
-     LANDING PAGE (About WeSplit)
+     LANDING PAGE (About GoPlaces)
      ====================================================== */
   function renderLanding() {
-    App.setTitle('About WeSplit');
+    App.setTitle('About GoPlaces');
     const features = [
       ['fa-receipt','Smart Expense Splitting','Track every expense. Our algorithm minimizes the number of settlements needed, saving time and awkward conversations.','#4f46e5','#ede9fe'],
-      ['fa-wifi-slash','Works Offline','Zero coverage? No problem. WeSplit caches everything locally and syncs automatically when you reconnect.','#0ea5e9','#e0f2fe'],
+      ['fa-wifi-slash','Works Offline','Zero coverage? No problem. GoPlaces caches everything locally and syncs automatically when you reconnect.','#0ea5e9','#e0f2fe'],
       ['fa-table','Google Sheets Sync','One click to push all your data to a beautifully formatted Google Sheet — your data, in your Drive, forever.','#10b981','#d1fae5'],
       ['fa-users','Find Travel Companions','Solo traveler? Connect with verified travel mates or discover groups looking for members.','#f59e0b','#fef3c7'],
       ['fa-gift','Loyalty Rewards','Earn coins for every action. Redeem for discounts at partner hotels, cafes, and resorts.','#8b5cf6','#ede9fe'],
@@ -1087,7 +1087,7 @@ const Pages = (() => {
       <div class="landing-hero">
         <div style="font-size:3rem;margin-bottom:16px">🗺️</div>
         <h1>Travel Together, <span style="color:var(--clr-primary)">Split Fairly</span></h1>
-        <p>WeSplit is your end-to-end, offline-resilient group travel companion. Track expenses, split bills, settle debts, and connect with fellow travelers — all in one place.</p>
+        <p>GoPlaces is your end-to-end, offline-resilient group travel companion. Track expenses, split bills, settle debts, and connect with fellow travelers — all in one place.</p>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
           <button class="btn btn-primary btn-lg" onclick="App.navigate('trips')"><i class="fas fa-map-marked-alt"></i> Start a Trip</button>
           <button class="btn btn-secondary btn-lg" onclick="App.navigate('find-mate')"><i class="fas fa-users"></i> Find Companions</button>
@@ -1109,7 +1109,7 @@ const Pages = (() => {
           </div>
           <div>
             <div style="font-size:2rem;margin-bottom:8px">✅</div>
-            <h3 style="color:var(--clr-accent);margin-bottom:8px">WeSplit Solution</h3>
+            <h3 style="color:var(--clr-accent);margin-bottom:8px">GoPlaces Solution</h3>
             <ul style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-direction:column;gap:8px;padding-left:16px;list-style:disc">
               <li>One-click expense logging with smart auto-split</li>
               <li>Full offline support with IndexedDB caching</li>
@@ -1132,9 +1132,9 @@ const Pages = (() => {
 
       <!-- For Partners -->
       <div class="card" style="background:linear-gradient(135deg,var(--clr-primary-10),transparent)">
-        <h2 style="font-size:var(--text-xl);font-weight:800;margin-bottom:12px">🏪 Partner with WeSplit</h2>
+        <h2 style="font-size:var(--text-xl);font-weight:800;margin-bottom:12px">🏪 Partner with GoPlaces</h2>
         <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:16px">
-          Reach travelers at the exact moment they're planning their next adventure. WeSplit's sponsored listings appear directly in our travel companion app.
+          Reach travelers at the exact moment they're planning their next adventure. GoPlaces's sponsored listings appear directly in our travel companion app.
         </p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:16px">
           ${[['🏨','Hotels & Resorts','Capture group bookings from multi-member trips'],['🍽️','Restaurants & Cafes','Target hungry travelers in your city'],['🎡','Activity Providers','Promote tours, treks, and adventures'],['🛕','Local Businesses','Reach travelers in your locality']].map(([e,t,d])=>
@@ -1156,22 +1156,22 @@ const Pages = (() => {
   function renderFAQ() {
     App.setTitle('FAQ', 'Frequently Asked Questions');
     const faqs = [
-      ['Is WeSplit free to use?', 'Yes! WeSplit is completely free for individuals. We monetize through optional partner sponsor placements and premium features.'],
-      ['How does the offline mode work?', 'WeSplit uses IndexedDB, a browser-native database that persists even without internet. Any data you enter offline is queued and automatically synced to Google Sheets when you reconnect.'],
-      ['How is my data secured?', 'All data is stored in your own browser (localStorage/IndexedDB) and in your personal Google Drive via Sheets. WeSplit never stores your data on external servers.'],
+      ['Is GoPlaces free to use?', 'Yes! GoPlaces is completely free for individuals. We monetize through optional partner sponsor placements and premium features.'],
+      ['How does the offline mode work?', 'GoPlaces uses IndexedDB, a browser-native database that persists even without internet. Any data you enter offline is queued and automatically synced to Google Sheets when you reconnect.'],
+      ['How is my data secured?', 'All data is stored in your own browser (localStorage/IndexedDB) and in your personal Google Drive via Sheets. GoPlaces never stores your data on external servers.'],
       ['What is a UPI ID and why do I need it?', 'UPI (Unified Payments Interface) is India\'s instant payment system. Adding your UPI ID lets other group members send you payment directly from within the app via GPay, PhonePe, or Paytm.'],
-      ['How does the debt minimization work?', 'WeSplit calculates the net balance for each person, then uses a greedy algorithm to calculate the minimum number of transactions needed to settle all debts. This reduces the number of payments from O(n²) to just O(n).'],
+      ['How does the debt minimization work?', 'GoPlaces calculates the net balance for each person, then uses a greedy algorithm to calculate the minimum number of transactions needed to settle all debts. This reduces the number of payments from O(n²) to just O(n).'],
       ['What is the coin worth?', '1 coin ≈ ₹0.10 in partner discount value. Example: 100 coins = ₹10 off at a partner hotel. Coins are earned automatically as you use the app.'],
-      ['Can I use WeSplit for international trips?', 'Yes! WeSplit supports multiple currencies (₹, $, €, £, ¥ and more). You can set your preferred currency in Settings.'],
+      ['Can I use GoPlaces for international trips?', 'Yes! GoPlaces supports multiple currencies (₹, $, €, £, ¥ and more). You can set your preferred currency in Settings.'],
       ['How do I set up Google Sheets sync?', 'Go to Settings → Google Sheets, click Configure, and follow the step-by-step guide to deploy your personal Apps Script Web App. It takes about 5 minutes and requires no coding knowledge.'],
-      ['How many members can a trip have?', 'WeSplit has no hard limit on trip members. It\'s been tested with groups of up to 50 people. Performance is excellent for typical group sizes (5–20).'],
-      ['Can I run WeSplit from a local file?', 'Yes! Since WeSplit is pure HTML/CSS/JS with no backend server required, you can open index.html directly from your computer or host it on GitHub Pages.'],
+      ['How many members can a trip have?', 'GoPlaces has no hard limit on trip members. It\'s been tested with groups of up to 50 people. Performance is excellent for typical group sizes (5–20).'],
+      ['Can I run GoPlaces from a local file?', 'Yes! Since GoPlaces is pure HTML/CSS/JS with no backend server required, you can open index.html directly from your computer or host it on GitHub Pages.'],
     ];
 
     return `<div class="page-content">
       <div class="page-hero">
         <h1>Frequently Asked Questions</h1>
-        <p>Everything you need to know about WeSplit</p>
+        <p>Everything you need to know about GoPlaces</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;max-width:760px">
         ${faqs.map(([q,a]) => `
@@ -1198,7 +1198,7 @@ const Pages = (() => {
      SPONSORS
      ====================================================== */
   function renderSponsors() {
-    App.setTitle('Partner Sponsors', 'Exclusive deals for WeSplit travelers');
+    App.setTitle('Partner Sponsors', 'Exclusive deals for GoPlaces travelers');
     const sponsors = [
       { name: 'The Mountain Cafe',     city: 'Kasol',      offer: '10% off all food items',        emoji: '☕', tag: 'Food & Cafe' },
       { name: 'OYO Rooms',             city: 'Pan India',   offer: 'Free room upgrade for groups 4+',emoji: '🏨', tag: 'Hotel' },
@@ -1210,7 +1210,7 @@ const Pages = (() => {
     return `<div class="page-content">
       <div class="page-hero">
         <h1>Partner Sponsors</h1>
-        <p>Exclusive deals curated for WeSplit travelers</p>
+        <p>Exclusive deals curated for GoPlaces travelers</p>
       </div>
 
       <div class="sheets-banner" style="margin-bottom:var(--space-5)">
@@ -1283,7 +1283,7 @@ const Pages = (() => {
         <div>
           <div class="card" style="margin-bottom:var(--space-4)">
             <div class="card-title mb-16"><i class="fas fa-info-circle"></i> Contact Details</div>
-            ${[['fas fa-envelope','Email','hello@wesplit.app'],['fas fa-phone','Phone','+91 98765 43210'],['fas fa-map-pin','Address','Mumbai, Maharashtra, India'],['fas fa-clock','Response Time','Within 24 hours']].map(([icon,label,val]) =>
+            ${[['fas fa-envelope','Email','hello@goplaces.app'],['fas fa-phone','Phone','+91 98765 43210'],['fas fa-map-pin','Address','Mumbai, Maharashtra, India'],['fas fa-clock','Response Time','Within 24 hours']].map(([icon,label,val]) =>
               `<div class="contact-info-item">
                 <div class="contact-icon"><i class="${icon}"></i></div>
                 <div><div class="text-xs text-muted">${label}</div><div class="fw-600 text-sm">${escHtml(val)}</div></div>
@@ -1312,7 +1312,7 @@ const Pages = (() => {
     return `<div class="page-content">
       <div class="page-hero">
         <h1>Your Feedback Matters</h1>
-        <p>Help us make WeSplit better for everyone. Suggest features or report bugs — every submission is reviewed.</p>
+        <p>Help us make GoPlaces better for everyone. Suggest features or report bugs — every submission is reviewed.</p>
       </div>
       <div class="contact-grid">
         <div class="card">

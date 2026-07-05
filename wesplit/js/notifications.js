@@ -1,5 +1,5 @@
 /* ============================================================
-   WeSplit – Toast Notifications & Modal System
+   GoPlaces – Toast Notifications & Modal System
    ============================================================ */
 'use strict';
 

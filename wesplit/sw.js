@@ -1,7 +1,7 @@
 /* ============================================================
-   WeSplit – Service Worker (Offline Cache)
+   GoPlaces – Service Worker (Offline Cache)
    ============================================================ */
-const CACHE_NAME = 'wesplit-v1';
+const CACHE_NAME = 'goplaces-v1';
 const ASSETS = [
   './',
   './index.html',
