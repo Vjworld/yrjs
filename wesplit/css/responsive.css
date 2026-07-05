@@ -1,0 +1,96 @@
+/* ============================================================
+   WeSplit – Responsive / Mobile Styles
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .contact-grid   { grid-template-columns: 1fr; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  /* Sidebar becomes slide-over */
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-xl);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-close-btn { display: flex; }
+
+  .main-wrapper { margin-left: 0; }
+
+  .hamburger-btn { display: flex; }
+  .sidebar-overlay { display: block; }
+
+  /* Page */
+  .page-container { padding: var(--space-4); }
+
+  /* Stats */
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Trips */
+  .trips-grid  { grid-template-columns: 1fr; }
+
+  /* Community */
+  .community-grid { grid-template-columns: 1fr; }
+
+  /* Feature grid */
+  .feature-grid { grid-template-columns: 1fr; }
+
+  /* Auth */
+  .auth-container { padding: 28px 20px; }
+  .form-row-two { grid-template-columns: 1fr; }
+
+  /* Landing hero */
+  .landing-hero h1 { font-size: 1.75rem; }
+
+  /* Modal */
+  .modal-overlay { align-items: flex-end; padding: 0; }
+  .modal-box { border-radius: var(--radius-xl) var(--radius-xl) 0 0; max-height: 90vh; }
+
+  /* Toast */
+  #toast-container { left: 12px; right: 12px; bottom: 16px; }
+
+  /* Rewards */
+  .rewards-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Profile */
+  .profile-header { flex-direction: column; }
+
+  /* Notif panel */
+  .notif-panel { right: 8px; width: calc(100vw - 16px); }
+
+  /* Settlement */
+  .settlement-amount { font-size: var(--text-lg); }
+
+  /* Chart */
+  .chart-wrap { flex-direction: column; }
+
+  /* Sheets banner */
+  .sheets-banner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .form-row-between { flex-direction: column; align-items: flex-start; }
+  .top-header { padding: 0 var(--space-4); }
+  .page-container { padding: var(--space-3); }
+  .reward-item { padding: 12px; }
+  .rewards-grid { grid-template-columns: 1fr; }
+  .upi-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Landscape phones */
+@media (max-height: 600px) and (orientation: landscape) {
+  .auth-container { padding: 20px; margin: 10px auto; }
+  #auth-screen { align-items: flex-start; padding: 10px; }
+}
+
+/* Print */
+@media print {
+  .sidebar, .top-header, #toast-container, .btn, .modal-overlay { display: none !important; }
+  .main-wrapper { margin-left: 0; }
+  .page-container { padding: 0; }
+  .card { box-shadow: none; border: 1px solid #ddd; }
+}

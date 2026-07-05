@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeSplit – Smart Group Travel Expense Manager</title>
+  <meta name="description" content="WeSplit helps you track, split, and settle group travel expenses with ease. Works offline, syncs to Google Sheets." />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<!-- ===================== TOAST CONTAINER ===================== -->
+<div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ===================== SPLASH SCREEN ===================== -->
+<div id="splash-screen">
+  <div class="splash-inner">
+    <div class="splash-logo">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <rect width="64" height="64" rx="16" fill="#4f46e5"/>
+        <path d="M20 44L32 20L44 44" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 36H40" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="44" cy="22" r="6" fill="#10b981"/>
+        <path d="M41 22H47M44 19V25" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1 class="splash-title">WeSplit</h1>
+    <p class="splash-tagline">Smart Group Travel Companion</p>
+    <div class="splash-loader"><div></div><div></div><div></div></div>
+  </div>
+</div>
+
+<!-- ===================== AUTH SCREENS ===================== -->
+<div id="auth-screen" class="screen hidden">
+  <div class="auth-container">
+    <div class="auth-brand">
+      <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+        <rect width="64" height="64" rx="16" fill="#4f46e5"/>
+        <path d="M20 44L32 20L44 44" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 36H40" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="44" cy="22" r="6" fill="#10b981"/>
+        <path d="M41 22H47M44 19V25" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>WeSplit</span>
+    </div>
+
+    <!-- Sign In -->
+    <div id="signin-panel" class="auth-panel">
+      <h2>Welcome back!</h2>
+      <p class="auth-subtitle">Sign in to your account</p>
+      <form id="signin-form" class="auth-form" novalidate>
+        <div class="form-group">
+          <label for="si-email">Email</label>
+          <div class="input-icon-wrap"><i class="fas fa-envelope"></i>
+            <input type="email" id="si-email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="si-password">Password</label>
+          <div class="input-icon-wrap"><i class="fas fa-lock"></i>
+            <input type="password" id="si-password" placeholder="••••••••" autocomplete="current-password" required />
+            <button type="button" class="toggle-pw" data-target="si-password"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <div class="form-row-between">
+          <label class="checkbox-label"><input type="checkbox" id="si-remember" /> Remember me</label>
+          <a href="#" class="link-text" id="goto-forgot">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" id="signin-btn">
+          <span class="btn-text">Sign In</span><span class="btn-loader hidden"><i class="fas fa-spinner fa-spin"></i></span>
+        </button>
+        <div class="auth-divider"><span>or continue with</span></div>
+        <button type="button" class="btn btn-google btn-full" id="google-signin-btn">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" alt="Google" />
+          Continue with Google
+        </button>
+      </form>
+      <p class="auth-switch">Don't have an account? <a href="#" id="goto-signup">Sign Up</a></p>
+    </div>
+
+    <!-- Sign Up -->
+    <div id="signup-panel" class="auth-panel hidden">
+      <h2>Create account</h2>
+      <p class="auth-subtitle">Join WeSplit for free</p>
+      <form id="signup-form" class="auth-form" novalidate>
+        <div class="form-row-two">
+          <div class="form-group">
+            <label for="su-fname">First Name</label>
+            <input type="text" id="su-fname" placeholder="John" required />
+          </div>
+          <div class="form-group">
+            <label for="su-lname">Last Name</label>
+            <input type="text" id="su-lname" placeholder="Doe" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="su-email">Email</label>
+          <div class="input-icon-wrap"><i class="fas fa-envelope"></i>
+            <input type="email" id="su-email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="su-phone">Phone (optional)</label>
+          <div class="input-icon-wrap"><i class="fas fa-phone"></i>
+            <input type="tel" id="su-phone" placeholder="+91 98765 43210" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="su-password">Password</label>
+          <div class="input-icon-wrap"><i class="fas fa-lock"></i>
+            <input type="password" id="su-password" placeholder="Min 8 characters" required />
+            <button type="button" class="toggle-pw" data-target="su-password"><i class="fas fa-eye"></i></button>
+          </div>
+          <div id="pw-strength-bar" class="pw-strength"><div></div></div>
+        </div>
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="su-terms" required /> I agree to the <a href="pages/terms.html" target="_blank">Terms of Service</a> and <a href="pages/privacy.html" target="_blank">Privacy Policy</a>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" id="signup-btn">
+          <span class="btn-text">Create Account</span><span class="btn-loader hidden"><i class="fas fa-spinner fa-spin"></i></span>
+        </button>
+      </form>
+      <p class="auth-switch">Already have an account? <a href="#" id="goto-signin">Sign In</a></p>
+    </div>
+
+    <!-- Forgot Password -->
+    <div id="forgot-panel" class="auth-panel hidden">
+      <button class="back-btn" id="back-to-signin"><i class="fas fa-arrow-left"></i></button>
+      <h2>Reset Password</h2>
+      <p class="auth-subtitle">We'll send a reset link to your email</p>
+      <form id="forgot-form" class="auth-form" novalidate>
+        <div class="form-group">
+          <label for="fp-email">Email</label>
+          <div class="input-icon-wrap"><i class="fas fa-envelope"></i>
+            <input type="email" id="fp-email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Send Reset Link</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MAIN APP ===================== -->
+<div id="app-screen" class="screen hidden">
+
+  <!-- Sidebar Navigation -->
+  <nav id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+          <rect width="64" height="64" rx="16" fill="#4f46e5"/>
+          <path d="M20 44L32 20L44 44" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24 36H40" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="44" cy="22" r="6" fill="#10b981"/>
+          <path d="M41 22H47M44 19V25" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>WeSplit</span>
+      </div>
+      <button id="sidebar-close" class="sidebar-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="sidebar-user">
+      <div class="avatar" id="nav-avatar">J</div>
+      <div class="user-info">
+        <p id="nav-username">John Doe</p>
+        <span id="nav-coins"><i class="fas fa-coins"></i> <span id="coins-count">0</span> coins</span>
+      </div>
+    </div>
+
+    <!-- Offline Status -->
+    <div id="offline-banner" class="offline-banner hidden">
+      <i class="fas fa-wifi-slash"></i> Offline – data queued
+    </div>
+
+    <ul class="nav-menu">
+      <li class="nav-section-label">Main</li>
+      <li><a href="#" class="nav-link active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="#" class="nav-link" data-page="trips"><i class="fas fa-map-marked-alt"></i> My Trips</a></li>
+      <li><a href="#" class="nav-link" data-page="expenses"><i class="fas fa-receipt"></i> Expenses</a></li>
+      <li><a href="#" class="nav-link" data-page="settlements"><i class="fas fa-handshake"></i> Settlements</a></li>
+
+      <li class="nav-section-label">Community</li>
+      <li><a href="#" class="nav-link" data-page="find-mate"><i class="fas fa-users"></i> Find Trip Mate</a></li>
+      <li><a href="#" class="nav-link" data-page="find-group"><i class="fas fa-compass"></i> Find Groups</a></li>
+
+      <li class="nav-section-label">Account</li>
+      <li><a href="#" class="nav-link" data-page="rewards"><i class="fas fa-gift"></i> Rewards <span class="badge-green">NEW</span></a></li>
+      <li><a href="#" class="nav-link" data-page="profile"><i class="fas fa-user-circle"></i> Profile</a></li>
+      <li><a href="#" class="nav-link" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+
+      <li class="nav-section-label">Info</li>
+      <li><a href="#" class="nav-link" data-page="landing"><i class="fas fa-info-circle"></i> About WeSplit</a></li>
+      <li><a href="#" class="nav-link" data-page="faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+      <li><a href="#" class="nav-link" data-page="sponsors"><i class="fas fa-store"></i> Partner Sponsors</a></li>
+      <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+      <li><a href="#" class="nav-link" data-page="suggest"><i class="fas fa-lightbulb"></i> Suggest / Bug</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <button class="btn btn-outline-sm btn-full" id="sheets-sync-btn">
+        <img src="https://www.gstatic.com/images/branding/product/1x/sheets_2020q4_32dp.png" width="16" alt="Sheets" />
+        Sync to Google Sheets
+      </button>
+      <button class="btn btn-ghost-sm btn-full mt-8" id="signout-btn">
+        <i class="fas fa-sign-out-alt"></i> Sign Out
+      </button>
+    </div>
+  </nav>
+
+  <!-- Sidebar Overlay -->
+  <div id="sidebar-overlay" class="sidebar-overlay hidden"></div>
+
+  <!-- Main Content Area -->
+  <div class="main-wrapper">
+    <!-- Top Header -->
+    <header class="top-header">
+      <button id="hamburger-btn" class="hamburger-btn"><i class="fas fa-bars"></i></button>
+      <div class="header-title">
+        <h1 id="page-title">Dashboard</h1>
+        <p id="page-subtitle" class="page-subtitle"></p>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="theme-toggle-btn" title="Toggle theme">
+          <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+        <button class="icon-btn" id="notif-btn" title="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notif-dot hidden" id="notif-dot"></span>
+        </button>
+        <div class="header-avatar" id="header-avatar">J</div>
+      </div>
+    </header>
+
+    <!-- Page Container -->
+    <main class="page-container" id="page-container">
+      <!-- Pages injected here by JS -->
+    </main>
+  </div>
+</div>
+
+<!-- ===================== MODALS ===================== -->
+<div id="modal-overlay" class="modal-overlay hidden">
+  <div id="modal-box" class="modal-box" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <h3 id="modal-title">Modal Title</h3>
+      <button class="modal-close-btn" id="modal-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+</div>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="js/config.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/expenses.js"></script>
+<script src="js/settlements.js"></script>
+<script src="js/sheets.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
