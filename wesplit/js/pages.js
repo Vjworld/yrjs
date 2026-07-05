@@ -149,7 +149,7 @@ const Pages = (() => {
     App.setTitle('My Trips', `${trips.length} trip${trips.length !== 1 ? 's' : ''}`);
 
     return `<div class="page-content">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-5)">
+      <div class="trips-toolbar" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-5)">
         <div class="search-bar" style="flex:1;max-width:320px">
           <i class="fas fa-search"></i>
           <input type="text" id="trip-search" placeholder="Search trips…" oninput="Pages.filterTrips(this.value)" />
@@ -471,30 +471,30 @@ const Pages = (() => {
     const total = filtered.reduce((s,e) => s + e.amount, 0);
 
     return `<div class="page-content">
-      <!-- Trip selector -->
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--space-5);flex-wrap:wrap">
-        <div class="form-group" style="margin:0">
-          <select id="trip-selector" onchange="Pages.switchTrip(this.value)" style="padding:8px 32px 8px 12px;min-width:180px">
+      <!-- Trip selector + toolbar -->
+      <div class="exp-toolbar" style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-4)">
+        <div class="form-group" style="margin:0;flex-shrink:0">
+          <select id="trip-selector" onchange="Pages.switchTrip(this.value)" style="padding:8px 32px 8px 12px;min-width:160px">
             ${trips.map(t => `<option value="${t.id}" ${t.id===trip.id?'selected':''}>${escHtml(t.name)}</option>`).join('')}
           </select>
         </div>
-        <div class="search-bar" style="flex:1;max-width:280px">
+        <div class="search-bar" style="flex:1;min-width:0">
           <i class="fas fa-search"></i>
           <input type="text" id="exp-search" placeholder="Search expenses…" value="${escHtml(searchQ)}"
             oninput="Pages.filterExpenses({q:this.value})" />
         </div>
-        <select onchange="Pages.filterExpenses({sort:this.value})" style="padding:8px 12px;border:1.5px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-input);color:var(--text-primary);font-size:var(--text-sm)">
+        <select onchange="Pages.filterExpenses({sort:this.value})" style="padding:8px 12px;border:1.5px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-input);color:var(--text-primary);font-size:var(--text-sm);flex-shrink:0">
           <option value="date-desc" ${activeSort==='date-desc'?'selected':''}>Latest first</option>
           <option value="date-asc"  ${activeSort==='date-asc'?'selected':''}>Oldest first</option>
           <option value="amount-desc" ${activeSort==='amount-desc'?'selected':''}>Highest amount</option>
           <option value="amount-asc"  ${activeSort==='amount-asc'?'selected':''}>Lowest amount</option>
         </select>
-        <div style="display:flex;gap:8px;margin-left:auto">
+        <div class="exp-toolbar-actions" style="display:flex;gap:8px;flex-shrink:0">
           <button class="btn btn-secondary btn-sm" onclick="Settlements.exportCSV('${trip.id}')">
-            <i class="fas fa-file-csv"></i> Export
+            <i class="fas fa-file-csv"></i><span class="hide-xs"> Export</span>
           </button>
-          <button class="btn btn-primary" onclick="Expenses.buildExpenseForm('${trip.id}')">
-            <i class="fas fa-plus"></i> Add Expense
+          <button class="btn btn-primary btn-sm" onclick="Expenses.buildExpenseForm('${trip.id}')">
+            <i class="fas fa-plus"></i><span class="hide-xs"> Add</span>
           </button>
         </div>
       </div>
@@ -510,7 +510,7 @@ const Pages = (() => {
       </div>
 
       <!-- Summary bar -->
-      <div class="card" style="margin-bottom:var(--space-5);flex-direction:row;display:flex;gap:24px;flex-wrap:wrap">
+      <div class="card summary-bar" style="margin-bottom:var(--space-5);flex-direction:row;display:flex;gap:24px;flex-wrap:wrap">
         <div><div class="text-xs text-muted">Showing</div><div class="fw-700">${filtered.length} of ${expenses.length} expenses</div></div>
         <div><div class="text-xs text-muted">Total</div><div class="fw-700" style="color:var(--clr-primary)">${Storage.formatCurrency(total)}</div></div>
         <div><div class="text-xs text-muted">Members</div><div class="fw-700">${trip.members?.length||0}</div></div>
@@ -557,17 +557,17 @@ const Pages = (() => {
     const totalSpent= Storage.Expenses.totalForTrip(trip.id);
 
     return `<div class="page-content">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-5);flex-wrap:wrap;gap:12px">
+      <div class="settle-toolbar" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-5);gap:12px">
         <div>
           <h2 style="font-size:var(--text-xl);font-weight:700">${escHtml(trip.name)}</h2>
           <p class="text-muted text-sm">Total: ${Storage.formatCurrency(totalSpent)} &bull; ${txs.length} pending settlement${txs.length!==1?'s':''}</p>
         </div>
-        <div style="display:flex;gap:8px">
+        <div style="display:flex;gap:8px;flex-shrink:0">
           <button class="btn btn-secondary btn-sm" onclick="Settlements.exportCSV('${trip.id}')">
-            <i class="fas fa-download"></i> Export CSV
+            <i class="fas fa-download"></i><span class="hide-xs"> Export</span>
           </button>
           <button class="btn btn-accent btn-sm" onclick="Sheets.syncAll()">
-            <img src="https://www.gstatic.com/images/branding/product/1x/sheets_2020q4_32dp.png" width="14" alt="" /> Sync Sheets
+            <img src="https://www.gstatic.com/images/branding/product/1x/sheets_2020q4_32dp.png" width="14" alt="" /><span class="hide-xs"> Sync</span>
           </button>
         </div>
       </div>
@@ -587,7 +587,7 @@ const Pages = (() => {
 
       <!-- Per Person Tab -->
       <div id="summary-tab" class="tab-content hidden">
-        <div class="card" style="padding:0;overflow:hidden">
+        <div class="card table-scroll" style="padding:0;overflow:hidden">
           <table class="data-table">
             <thead><tr><th>Member</th><th>Total Paid</th><th>Share</th><th>Balance</th></tr></thead>
             <tbody>
@@ -619,12 +619,12 @@ const Pages = (() => {
     App.setTitle('Find a Trip Mate', 'Connect with solo travelers');
     const mates = Storage.Community.getMates();
     return `<div class="page-content">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-5);flex-wrap:wrap;gap:12px">
+      <div class="trips-toolbar" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-5)">
         <div class="search-bar" style="flex:1;max-width:320px">
-          <i class="fas fa-search"></i><input type="text" placeholder="Search by name, city or destination…" oninput="Pages.searchMates(this.value)" id="mate-search" />
+          <i class="fas fa-search"></i><input type="text" placeholder="Search by name, city…" oninput="Pages.searchMates(this.value)" id="mate-search" />
         </div>
         <button class="btn btn-primary" onclick="Pages.showPostMateModal()">
-          <i class="fas fa-user-plus"></i> Post My Profile
+          <i class="fas fa-user-plus"></i><span class="hide-xs"> Post Profile</span>
         </button>
       </div>
       <div class="community-grid" id="mates-grid">
@@ -722,12 +722,12 @@ const Pages = (() => {
     App.setTitle('Find Groups to Join', 'Discover active trip itineraries');
     const groups = Storage.Community.getGroups();
     return `<div class="page-content">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-5);flex-wrap:wrap;gap:12px">
+      <div class="trips-toolbar" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);margin-bottom:var(--space-5)">
         <div class="search-bar" style="flex:1;max-width:320px">
           <i class="fas fa-search"></i><input type="text" placeholder="Search groups…" oninput="Pages.searchGroups(this.value)" id="group-search" />
         </div>
         <button class="btn btn-primary" onclick="Pages.showPostGroupModal()">
-          <i class="fas fa-plus"></i> Post Your Group
+          <i class="fas fa-plus"></i><span class="hide-xs"> Post Group</span>
         </button>
       </div>
       <div class="community-grid" id="groups-grid">
@@ -1096,7 +1096,7 @@ const Pages = (() => {
 
       <!-- Problem / Solution -->
       <div class="card" style="margin-bottom:var(--space-6)">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);align-items:start">
+        <div class="landing-two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);align-items:start">
           <div>
             <div style="font-size:2rem;margin-bottom:8px">😤</div>
             <h3 style="color:var(--clr-danger);margin-bottom:8px">The Problem</h3>

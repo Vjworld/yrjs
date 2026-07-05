@@ -260,6 +260,32 @@
       <!-- Pages injected here by JS -->
     </main>
   </div>
+
+  <!-- ---- Bottom Navigation Bar (mobile only) ---- -->
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Bottom navigation">
+    <button class="bottom-nav-item active" data-page="dashboard" onclick="App.navigate('dashboard')">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </button>
+    <button class="bottom-nav-item" data-page="trips" onclick="App.navigate('trips')">
+      <i class="fas fa-map-marked-alt"></i>
+      <span>Trips</span>
+    </button>
+    <!-- FAB: Add Expense -->
+    <div class="bottom-nav-fab">
+      <button onclick="App.fabAction()" title="Add expense" aria-label="Add expense">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+    <button class="bottom-nav-item" data-page="settlements" onclick="App.navigate('settlements')">
+      <i class="fas fa-handshake"></i>
+      <span>Settle</span>
+    </button>
+    <button class="bottom-nav-item" data-page="profile" onclick="App.navigate('profile')">
+      <i class="fas fa-user-circle"></i>
+      <span>Profile</span>
+    </button>
+  </nav>
 </div>
 
 <!-- ===================== MODALS ===================== -->

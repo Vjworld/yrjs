@@ -63,14 +63,17 @@
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 10px 14px;
+  padding: 11px 14px;
   border: 1.5px solid var(--border-color);
   border-radius: var(--radius-md);
   background: var(--bg-input);
   color: var(--text-primary);
-  font-size: var(--text-sm);
+  font-size: 16px; /* prevent iOS zoom */
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   width: 100%;
+  min-height: 44px; /* touch target */
+  -webkit-appearance: none;
+  appearance: none;
 }
 .form-group input:focus,
 .form-group select:focus,
@@ -221,6 +224,8 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
   z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px;
   backdrop-filter: blur(4px);
   animation: fadeInOverlay .2s ease;
+  /* iOS scroll fix */
+  -webkit-overflow-scrolling: touch;
 }
 @keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
 .modal-box {
@@ -228,16 +233,18 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
   box-shadow: var(--shadow-xl); width: 100%; max-width: 560px; max-height: 90vh;
   overflow-y: auto; border: 1px solid var(--border-color);
   animation: slideUpModal .25s ease;
+  /* Prevent overscroll from propagating to page */
+  overscroll-behavior: contain;
 }
 @keyframes slideUpModal { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .modal-box.modal-lg { max-width: 760px; }
 .modal-box.modal-sm { max-width: 420px; }
 .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 0; }
 .modal-header h3 { font-size: var(--text-lg); font-weight: 700; }
-.modal-close-btn { color: var(--text-muted); padding: 6px; border-radius: var(--radius-sm); transition: all var(--transition-fast); }
+.modal-close-btn { color: var(--text-muted); padding: 8px; border-radius: var(--radius-sm); transition: all var(--transition-fast); min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
 .modal-close-btn:hover { background: var(--bg-app); color: var(--text-primary); }
 .modal-body { padding: 20px 24px; display: flex; flex-direction: column; gap: var(--space-4); }
-.modal-footer { padding: 0 24px 20px; display: flex; gap: 10px; justify-content: flex-end; }
+.modal-footer { padding: 0 24px 20px; display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
 
 /* ---- Member Pill ---- */
 .member-pill {

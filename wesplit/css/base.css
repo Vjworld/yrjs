@@ -83,3 +83,34 @@ button { cursor: pointer; border: none; background: none; }
 .screen, .sidebar, .top-header, .card, .modal-box {
   transition: background var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
 }
+
+/* ---- Responsive utilities ---- */
+/* Hide text labels on very small screens (icon-only buttons) */
+@media (max-width: 480px) {
+  .hide-xs { display: none !important; }
+}
+
+/* Table scroll wrapper */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-scroll .data-table { min-width: 480px; }
+
+/* Safe area padding for notched phones */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* Touch: remove tap highlight globally */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Prevent text resize on orientation change */
+html { -webkit-text-size-adjust: 100%; }
+
+/* Make inputs/selects not zoom on iOS (font-size ≥ 16px) */
+input, select, textarea {
+  font-size: max(16px, 1em);
+}
+/* But keep labels and placeholders at design size */
+.form-group label   { font-size: var(--text-sm); }
+.form-group input::placeholder,
+.form-group textarea::placeholder { font-size: var(--text-sm); }

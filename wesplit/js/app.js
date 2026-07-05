@@ -94,16 +94,40 @@ const App = (() => {
     _currentPage = page;
     App.currentPage = page;
 
-    // Update active nav link
+    // Update active sidebar nav link
     document.querySelectorAll('.nav-link').forEach(l => {
       l.classList.toggle('active', l.dataset.page === page);
     });
+
+    // Update bottom nav active state
+    document.querySelectorAll('.bottom-nav-item[data-page]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.page === page);
+    });
+
+    // Close sidebar on mobile after navigation
+    closeSidebar();
 
     // Push history
     history.pushState({ page }, '', '#' + page);
 
     // Render page
     Pages.render(page);
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ---- FAB action (bottom nav centre button) ---- */
+  function fabAction() {
+    const activeId = Storage.Trips.getActive();
+    const trips    = Storage.Trips.getAll();
+    const tripId   = activeId || trips[0]?.id;
+    if (tripId) {
+      Expenses.buildExpenseForm(tripId);
+    } else {
+      navigate('trips');
+      Toast.show('Create a trip first to add expenses', 'info');
+    }
   }
 
   function setTitle(title, subtitle = '') {
@@ -177,7 +201,7 @@ const App = (() => {
     Storage.Settings.update({ theme: isDark ? 'dark' : 'light' });
   }
 
-  const AppAPI = { init, onAuthSuccess, showAuthScreen, navigate, setTitle, updateUserUI, toggleTheme, currentPage: 'dashboard' };
+  const AppAPI = { init, onAuthSuccess, showAuthScreen, navigate, setTitle, updateUserUI, toggleTheme, fabAction, currentPage: 'dashboard' };
   return AppAPI;
 })();
 
