@@ -1,10 +1,10 @@
 /* ============================================================
-   GoPlaces – Global Configuration & Constants
+   YRJS – Global Configuration & Constants
    ============================================================ */
 'use strict';
 
 const APP = {
-  name:    'GoPlaces',
+  name:    'YRJS',
   version: '1.0.0',
   tagline: 'Your Journey, Simplified',
 

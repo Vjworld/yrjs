@@ -1,5 +1,5 @@
 /* ============================================================
-   GoPlaces – Auth Module (LocalStorage-based, Firebase-ready)
+   YRJS – Auth Module (LocalStorage-based, Firebase-ready)
    Handles sign-up, sign-in, forgot password, Google OAuth stub
    ============================================================ */
 'use strict';
@@ -32,11 +32,11 @@ const Auth = (() => {
   }
 
   function getUsers() {
-    try { return JSON.parse(localStorage.getItem('goplaces_users') || '[]'); } catch { return []; }
+    try { return JSON.parse(localStorage.getItem('yrjs_users') || '[]'); } catch { return []; }
   }
 
   function saveUsers(users) {
-    localStorage.setItem('goplaces_users', JSON.stringify(users));
+    localStorage.setItem('yrjs_users', JSON.stringify(users));
   }
 
   function setLoading(btnId, loading) {
@@ -140,7 +140,7 @@ const Auth = (() => {
     const users = getUsers();
     // Simulate email – in production, hook into Firebase Auth
     Toast.show('If that email exists, a reset link has been sent! (Demo: check console)', 'info');
-    console.info('[GoPlaces] Password reset for:', email);
+    console.info('[YRJS] Password reset for:', email);
     showPanel('signin-panel');
   }
 
@@ -154,7 +154,7 @@ const Auth = (() => {
         fname:    'Demo',
         lname:    'Traveler',
         name:     'Demo Traveler',
-        email:    'demo@goplaces.app',
+        email:    'demo@yrjs.app',
         avatar:   'D',
         coins:    150,
         joinedAt: Date.now(),

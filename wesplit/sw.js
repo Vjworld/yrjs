@@ -1,7 +1,7 @@
 /* ============================================================
-   GoPlaces – Service Worker (Offline Cache)
+   YRJS – Service Worker (Offline Cache)
    ============================================================ */
-const CACHE_NAME = 'goplaces-v1';
+const CACHE_NAME = 'yrjs-v1';
 const ASSETS = [
   './',
   './index.html',

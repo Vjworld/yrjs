@@ -1,5 +1,5 @@
 /* ============================================================
-   GoPlaces – Toast Notifications & Modal System
+   YRJS – Toast Notifications & Modal System
    ============================================================ */
 'use strict';
 

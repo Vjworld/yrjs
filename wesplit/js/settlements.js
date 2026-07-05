@@ -1,5 +1,5 @@
 /* ============================================================
-   GoPlaces – Settlement Matrix (Debt Minimization Algorithm)
+   YRJS – Settlement Matrix (Debt Minimization Algorithm)
    ============================================================ */
 'use strict';
 
@@ -148,7 +148,7 @@ const Settlements = (() => {
       Toast.show(`No UPI ID on file for ${member?.name || 'this member'}. Ask them to update their profile.`, 'warning');
       return;
     }
-    const upiUrl = `upi://pay?pa=${encodeURIComponent(member.upi)}&pn=${encodeURIComponent(member.name)}&am=${amount}&cu=INR&tn=GoPlaces+Settlement`;
+    const upiUrl = `upi://pay?pa=${encodeURIComponent(member.upi)}&pn=${encodeURIComponent(member.name)}&am=${amount}&cu=INR&tn=YRJS+Settlement`;
     window.open(upiUrl, '_blank');
     Toast.show(`Opening ${appId} for ₹${amount} payment to ${member.name}`, 'info');
   }

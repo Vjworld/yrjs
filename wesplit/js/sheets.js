@@ -1,5 +1,5 @@
 /* ============================================================
-   GoPlaces – Google Sheets Integration
+   YRJS – Google Sheets Integration
    Uses Apps Script Web App as a backend proxy for OAuth-less
    public writes. For full OAuth, replace syncWithOAuth().
    ============================================================ */
@@ -7,7 +7,7 @@
 
 const Sheets = (() => {
 
-  const SCRIPT_URL_KEY = 'goplaces_script_url';
+  const SCRIPT_URL_KEY = 'yrjs_script_url';
 
   function getScriptUrl() {
     return localStorage.getItem(SCRIPT_URL_KEY) || Storage.Settings.get().appsScriptUrl || '';
@@ -29,7 +29,7 @@ const Sheets = (() => {
             <i class="fas fa-info-circle"></i>
             <div>
               <strong>How it works:</strong> Deploy the provided Apps Script as a Web App, paste the URL below.
-              GoPlaces pushes all your expenses to a Google Sheet instantly.
+              YRJS pushes all your expenses to a Google Sheet instantly.
               <br/><a class="cta-link" id="script-help-link" href="#">View setup guide ↗</a>
             </div>
           </div>
@@ -160,7 +160,7 @@ const Sheets = (() => {
       await Storage.Queue.clear();
 
     } catch (err) {
-      console.error('[GoPlaces Sheets]', err);
+      console.error('[YRJS Sheets]', err);
       if (!silent) Toast.show('Sync failed: ' + err.message + '. Data queued for retry.', 'error');
       await Storage.Queue.add({ type: 'sync', ts: Date.now() });
     }
@@ -193,7 +193,7 @@ const Sheets = (() => {
       body: `
         <ol style="font-size:var(--text-sm);color:var(--text-secondary);display:flex;flex-direction:column;gap:14px;padding-left:20px;">
           <li><strong>Open</strong> <a href="https://script.google.com" target="_blank">script.google.com</a> and click <em>New Project</em>.</li>
-          <li>Delete the default code and paste the GoPlaces Apps Script (copy it from the Sheets modal).</li>
+          <li>Delete the default code and paste the YRJS Apps Script (copy it from the Sheets modal).</li>
           <li>Click <strong>Deploy → New Deployment</strong>.</li>
           <li>Select type <strong>Web App</strong>. Set:
             <ul style="margin-top:6px;list-style:disc;padding-left:20px;">
@@ -202,12 +202,12 @@ const Sheets = (() => {
             </ul>
           </li>
           <li>Click <strong>Deploy</strong>, authorize, and copy the Web App URL.</li>
-          <li>Paste that URL back into GoPlaces → Sheets Setup → Save & Sync.</li>
+          <li>Paste that URL back into YRJS → Sheets Setup → Save & Sync.</li>
         </ol>
         <div class="card" style="background:var(--clr-accent-light);border-color:#6ee7b7;margin-top:12px">
           <p style="font-size:var(--text-xs);color:#065f46">
             <strong>Tip:</strong> The spreadsheet is automatically created in your Google Drive.
-            Each trip gets its own tab. The sync is one-directional (GoPlaces → Sheets).
+            Each trip gets its own tab. The sync is one-directional (YRJS → Sheets).
           </p>
         </div>`,
       size: 'lg',
@@ -218,15 +218,15 @@ const Sheets = (() => {
 
   /* ---- Apps Script code template ---- */
   function appsScriptCode() {
-    return `// GoPlaces – Google Apps Script Web App
+    return `// YRJS – Google Apps Script Web App
 // Deploy as Web App: Execute as Me, Anyone can access
 
-const SPREADSHEET_NAME = "GoPlaces Data";
+const SPREADSHEET_NAME = "YRJS Data";
 
 function doGet(e) {
   const action = e.parameter.action;
   if (action === "ping") return ContentService.createTextOutput("pong");
-  return ContentService.createTextOutput("GoPlaces Apps Script v1.0");
+  return ContentService.createTextOutput("YRJS Apps Script v1.0");
 }
 
 function doPost(e) {
@@ -275,7 +275,7 @@ function syncExpenses(ss, expenses) {
 function syncSummary(ss, data) {
   let sheet = ss.getSheetByName("Summary") || ss.insertSheet("Summary");
   sheet.clearContents();
-  sheet.appendRow(["GoPlaces Sync Summary"]);
+  sheet.appendRow(["YRJS Sync Summary"]);
   sheet.appendRow(["Last Sync:", new Date().toLocaleString()]);
   sheet.appendRow(["User:", (data.user||{}).name]);
   sheet.appendRow(["Total Trips:", (data.trips||[]).length]);

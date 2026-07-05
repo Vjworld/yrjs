@@ -1,13 +1,13 @@
 /* ============================================================
-   GoPlaces – Local Storage & Offline Queue
+   YRJS – Local Storage & Offline Queue
    Offline-first: IndexedDB for persistence, queues pending
    sync operations when offline.
    ============================================================ */
 'use strict';
 
 const Storage = (() => {
-  const PREFIX = 'goplaces_';
-  const DB_NAME = 'goplaces_db';
+  const PREFIX = 'yrjs_';
+  const DB_NAME = 'yrjs_db';
   const DB_VER  = 1;
   let db = null;
 
