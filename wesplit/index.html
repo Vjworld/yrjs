@@ -94,10 +94,27 @@
           <span class="btn-text">Sign In</span><span class="btn-loader hidden"><i class="fas fa-spinner fa-spin"></i></span>
         </button>
         <div class="auth-divider"><span>or continue with</span></div>
-        <button type="button" class="btn btn-google btn-full" id="google-signin-btn">
+
+        <!-- Social sign-in buttons -->
+        <button type="button" class="btn btn-google-pill btn-full" id="google-signin-btn">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" alt="Google" />
           Continue with Google
         </button>
+        <button type="button" class="btn btn-apple-pill btn-full" id="apple-signin-btn">
+          <svg width="18" height="20" viewBox="0 0 814 1000" fill="currentColor" aria-hidden="true">
+            <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-42.4-150.3-109.2C87.3 714.3 62 591.5 62 486.2c0-176.1 114.4-274.3 221.4-274.3 58.4 0 107.1 38.7 143.9 38.7 35.1 0 90.5-41.1 156.5-41.1 25.1 0 108.2 2.6 168.1 83.2zm-57.8-209.2c27.8-32.5 47.8-77.4 47.8-122.3 0-6.4-.6-12.9-1.9-18.7-45.3 1.9-99.2 30.2-131.7 67.3-25.1 28.5-50.2 72.7-50.2 119.6 0 7.1 1.3 14.2 1.9 16.4 2.6.6 6.5 1.3 10.4 1.3 40.8 0 92.1-26.9 123.7-63.6z"/>
+          </svg>
+          Continue with Apple
+        </button>
+
+        <!-- Legal footer -->
+        <p class="auth-legal">
+          By continuing, you agree to our
+          <a href="pages/terms.html" target="_blank" rel="noopener">Terms of Service</a>
+          and
+          <a href="pages/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+        </p>
+
       </form>
       <p class="auth-switch">Don't have an account? <a href="#" id="goto-signup">Sign Up</a></p>
     </div>

@@ -165,6 +165,27 @@ const Auth = (() => {
     }, 600);
   }
 
+  /* ---- Apple Sign In (stub) ---- */
+  function handleAppleSignIn() {
+    Toast.show('Apple Sign-In: configure Sign in with Apple credentials in js/config.js', 'info');
+    // Stub: auto-login as demo user (same as Google stub)
+    setTimeout(() => {
+      const demoUser = {
+        id:       Storage.genId(),
+        fname:    'Demo',
+        lname:    'Traveler',
+        name:     'Demo Traveler',
+        email:    'demo@yrjs.app',
+        avatar:   'D',
+        coins:    150,
+        joinedAt: Date.now(),
+        verified: true,
+      };
+      Storage.User.set(demoUser);
+      App.onAuthSuccess(demoUser);
+    }, 600);
+  }
+
   /* ---- Sign Out ---- */
   function signOut() {
     Storage.User.remove();
@@ -197,6 +218,7 @@ const Auth = (() => {
     document.getElementById('signup-form')?.addEventListener('submit', handleSignUp);
     document.getElementById('forgot-form')?.addEventListener('submit', handleForgotPw);
     document.getElementById('google-signin-btn')?.addEventListener('click', handleGoogleSignIn);
+    document.getElementById('apple-signin-btn') ?.addEventListener('click', handleAppleSignIn);
 
     // Password strength meter
     document.getElementById('su-password')?.addEventListener('input', (e) => checkPwStrength(e.target.value));
