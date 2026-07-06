@@ -34,7 +34,7 @@
 .auth-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; font-family: var(--font-heading); font-size: var(--text-xl); font-weight: 700; color: var(--text-primary); }
 .auth-panel h2 { font-size: var(--text-2xl); font-weight: 800; margin-bottom: 4px; }
 .auth-subtitle { color: var(--text-muted); font-size: var(--text-sm); margin-bottom: 24px; }
-.auth-form { display: flex; flex-direction: column; gap: var(--space-4); }
+.auth-form { display: flex; flex-direction: column; gap: var(--space-3); }
 .auth-switch { text-align: center; font-size: var(--text-sm); color: var(--text-muted); margin-top: 20px; }
 .auth-switch a { color: var(--clr-primary); font-weight: 600; }
 .link-text { font-size: var(--text-xs); color: var(--clr-primary); font-weight: 600; }

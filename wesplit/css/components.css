@@ -107,6 +107,41 @@
 .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: var(--text-sm); color: var(--text-secondary); cursor: pointer; }
 .checkbox-label input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--clr-primary); cursor: pointer; }
 
+/* ---- Terms checkbox row (sign-up form) ---- */
+/* Sits inside .auth-form flex column, needs no extra wrapper .form-group */
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.terms-row input[type="checkbox"] {
+  /* Large touch target, vertically aligned with first line */
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  margin-top: 2px;
+  accent-color: var(--clr-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+  /* Override base.css font-size:max(16px,1em) for checkboxes */
+  font-size: initial;
+}
+.terms-label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  cursor: pointer;
+  user-select: none;
+}
+.terms-label a {
+  color: var(--clr-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  /* Ensure links get their own click area and don't prevent checkbox from working */
+  position: relative;
+  z-index: 1;
+}
+
 /* Select with custom arrow */
 select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
 

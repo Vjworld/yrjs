@@ -1283,7 +1283,7 @@ const Pages = (() => {
         <div>
           <div class="card" style="margin-bottom:var(--space-4)">
             <div class="card-title mb-16"><i class="fas fa-info-circle"></i> Contact Details</div>
-            ${[['fas fa-envelope','Email','hello@yrjs.app'],['fas fa-phone','Phone','+91 98765 43210'],['fas fa-map-pin','Address','Mumbai, Maharashtra, India'],['fas fa-clock','Response Time','Within 24 hours']].map(([icon,label,val]) =>
+            ${[['fas fa-envelope','Email','support@ruvab.it.com'],['fas fa-phone','Phone','+91 98765 43210'],['fas fa-map-pin','Address','Mumbai, Maharashtra, India'],['fas fa-clock','Response Time','Within 24 hours']].map(([icon,label,val]) =>
               `<div class="contact-info-item">
                 <div class="contact-icon"><i class="${icon}"></i></div>
                 <div><div class="text-xs text-muted">${label}</div><div class="fw-600 text-sm">${escHtml(val)}</div></div>
